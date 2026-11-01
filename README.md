@@ -264,6 +264,55 @@ Lower cosine distance indicates greater vector similarity.
 **Status:** Completed.
 
 
+### Step 5: Document Retriever
+
+**Objective:** Retrieve relevant document chunks based on the semantic meaning of user questions.
+
+**Implementation:**
+
+Created `src/retriever.py` containing:
+
+- `DocumentRetriever` – manages semantic retrieval.
+- `retrieve()` – converts user questions into embeddings and retrieves matching document chunks.
+- Top-K retrieval – controls the number of retrieved results.
+- Distance threshold – filters less relevant results.
+
+**Concepts learned:**
+
+1. What is a retriever in RAG?
+2. Query embedding generation.
+3. Top-K retrieval.
+4. Cosine similarity and cosine distance.
+5. Similarity threshold filtering.
+6. Source metadata preservation.
+7. Retrieval quality evaluation.
+
+**Retrieval configuration:**
+
+| Parameter | Initial value |
+|---|---:|
+| Embedding model | all-MiniLM-L6-v2 |
+| Top-K | 3 |
+| Distance metric | Cosine |
+| Experimental threshold | 0.60 |
+
+**Testing:**
+
+```powershell
+python -m tests.test_retriever
+python -m tests.test_retrieval_threshold
+```
+
+**Important learning:**
+
+A retriever finds relevant passages from stored documents using semantic similarity. A smaller cosine distance generally indicates a closer match.
+
+Retrieval quality directly affects the quality of the final RAG-generated answer.
+
+**Status:** Completed.
+
+
+
 
 ## How to Run the Project
 
