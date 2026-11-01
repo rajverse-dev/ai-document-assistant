@@ -165,6 +165,47 @@ python -m tests.test_pipeline_loading
 
 **Status:** Completed.
 
+
+### Step 3: Open-Source Embedding Generation
+
+**Objective:** Convert document chunks into numerical vector representations using a locally executed open-source embedding model.
+
+**Model used:**
+- Model: all-MiniLM-L6-v2
+- Framework: Sentence Transformers
+- Embedding dimension: 384
+- Execution: Local CPU/GPU
+
+**Implementation:**
+
+Created `src/embeddings.py` containing:
+
+- `EmbeddingGenerator` – manages the embedding model.
+- `generate_embeddings()` – converts text into numerical vectors.
+- `embed_chunks()` – generates embeddings while preserving chunk metadata.
+
+**Concepts learned:**
+
+1. Embeddings represent the semantic meaning of text numerically.
+2. Semantically similar sentences should have similar vector representations.
+3. Embedding dimensions determine the size of the resulting vectors.
+4. Normalized embeddings simplify cosine similarity calculations.
+5. Open-source embedding models can run locally without an external API.
+
+**Testing:**
+
+```powershell
+python -m tests.test_embeddings
+python -m tests.test_embedding_pipeline
+```
+
+**Important observation:**
+
+The selected model produces 384-dimensional embeddings and has a maximum input sequence length of 256 word pieces. Input length must be considered when designing chunking strategies.
+
+**Status:** Completed.
+
+
 ## How to Run the Project
 
 Clone the repository:
