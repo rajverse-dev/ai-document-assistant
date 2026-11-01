@@ -82,6 +82,8 @@ ai-document-assistant/
 |-- README.md
 ```
 
+![alt text](image.png)
+
 ## Implementation Progress
 
 ### Step 1: Document Loading and Text Extraction
@@ -204,6 +206,63 @@ python -m tests.test_embedding_pipeline
 The selected model produces 384-dimensional embeddings and has a maximum input sequence length of 256 word pieces. Input length must be considered when designing chunking strategies.
 
 **Status:** Completed.
+
+
+### Step 4: ChromaDB Vector Database
+
+**Objective:** Store document embeddings, text chunks, and source metadata in a persistent vector database and retrieve relevant passages through semantic similarity search.
+
+**Technology used:**
+- ChromaDB
+- Python
+- Sentence Transformers
+- all-MiniLM-L6-v2
+
+**Implementation:**
+
+Created `src/vector_store.py` containing:
+
+- `VectorStore` – manages the ChromaDB database.
+- `add_chunks()` – stores document chunks, embeddings, and metadata.
+- `search()` – retrieves relevant passages using query embeddings.
+- `count()` – returns the number of stored records.
+- `_generate_id()` – generates deterministic chunk IDs.
+
+**Concepts learned:**
+
+1. What is a vector database?
+2. Difference between relational databases and vector databases.
+3. How ChromaDB stores embeddings and metadata.
+4. Cosine similarity and cosine distance.
+5. Semantic search and top-k retrieval.
+6. Persistent vector storage.
+7. Upsert operations and duplicate prevention.
+
+**Database configuration:**
+
+| Parameter | Value |
+|---|---|
+| Database | ChromaDB |
+| Storage | Local persistent storage |
+| Collection | document_collection |
+| Distance metric | Cosine |
+| Embedding dimension | 384 |
+
+**Testing:**
+
+```powershell
+python -m tests.test_vector_store
+python -m tests.test_persistence
+```
+
+**Important learning:**
+
+ChromaDB allows semantic retrieval by comparing the embedding of a user query against previously stored document embeddings.
+
+Lower cosine distance indicates greater vector similarity.
+
+**Status:** Completed.
+
 
 
 ## How to Run the Project

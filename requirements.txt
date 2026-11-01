@@ -1,3 +1,4 @@
 pypdf
 python-docx
 sentence-transformers
+chromadb
