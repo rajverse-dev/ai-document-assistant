@@ -366,6 +366,44 @@ Ollama allows the application to run an open-weight language model locally witho
 **Status:** Completed.
 
 
+## Step 7: Complete RAG Pipeline
+
+Implemented the complete Retrieval-Augmented Generation pipeline
+by integrating the retriever and local LLM.
+
+### Workflow
+
+1. Accept a user question.
+2. Convert the question into an embedding.
+3. Retrieve relevant document chunks from ChromaDB.
+4. Build context using retrieved document chunks.
+5. Send the context and question to the local Ollama LLM.
+6. Generate an answer using the supplied context.
+7. Return the answer along with source metadata.
+
+### Main Components
+
+- `src/rag_pipeline.py`: Connects retrieval and generation.
+- `src/retriever.py`: Finds relevant document chunks.
+- `src/llm_client.py`: Communicates with the Ollama API.
+- `src/vector_store.py`: Retrieves stored document chunks.
+
+### Run the Integration Test
+
+```bash
+python -m tests.test_rag_pipeline
+```
+
+### Current Features
+
+- Local LLM integration using Ollama.
+- Context-based answer generation.
+- Source metadata returned with answers.
+- Empty retrieval handling.
+- Configurable context length.
+
+
+
 
 
 
