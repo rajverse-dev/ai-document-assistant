@@ -402,6 +402,23 @@ python -m tests.test_rag_pipeline
 - Empty retrieval handling.
 - Configurable context length.
 
+## Step 8: Streamlit User Interface
+
+Implemented a Streamlit interface for the AI Document Assistant.
+
+### Features
+- Upload PDF, DOCX, TXT and Markdown files.
+- Automatic document loading and chunking.
+- Embedding generation using Sentence Transformers.
+- Persistent storage using ChromaDB.
+- Question-answering through a chat interface.
+- Source metadata display.
+
+### Run Application
+
+```bash
+python -m streamlit run app.py
+
 
 
 

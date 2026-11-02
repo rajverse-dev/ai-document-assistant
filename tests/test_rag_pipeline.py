@@ -37,7 +37,7 @@ def test_rag_pipeline():
 
     # 6. Ask a question
     result = rag.ask(
-        "What is Retrieval-Augmented Generation?"
+        "How to make cake?"
     )
 
     print("\nQUESTION:")
