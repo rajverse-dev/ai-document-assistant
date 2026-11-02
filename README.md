@@ -312,6 +312,61 @@ Retrieval quality directly affects the quality of the final RAG-generated answer
 **Status:** Completed.
 
 
+### Step 6: Local LLM Integration using Ollama
+
+**Objective:** Integrate an open-weight language model running locally to generate natural-language responses.
+
+**Technology used:**
+- Ollama
+- Qwen2.5 3B Instruct
+- Python urllib
+- Local HTTP API
+
+**Implementation:**
+
+Created `src/llm_client.py` containing:
+
+- `OllamaClient` – manages communication with Ollama.
+- `chat()` – sends conversation messages to the local model.
+- `generate()` – generates responses from text prompts.
+
+**Concepts learned:**
+
+1. What is a Large Language Model?
+2. Difference between embedding models and generative models.
+3. Local LLM inference using Ollama.
+4. HTTP API communication.
+5. System prompts and user prompts.
+6. Temperature and response generation.
+7. Prompt-based answer grounding.
+
+**Model configuration:**
+
+| Parameter | Value |
+|---|---|
+| Runtime | Ollama |
+| Model | qwen2.5:3b |
+| Execution | Local |
+| API endpoint | localhost:11434/api/chat |
+| Streaming | Disabled |
+
+**Testing:**
+
+```powershell
+python -m tests.test_llm_client
+python -m tests.test_llm_prompt
+```
+
+**Important learning:**
+
+The embedding model converts text into numerical vectors for semantic search, whereas the LLM generates human-readable responses.
+
+Ollama allows the application to run an open-weight language model locally without depending on an external LLM API.
+
+**Status:** Completed.
+
+
+
 
 
 ## How to Run the Project
