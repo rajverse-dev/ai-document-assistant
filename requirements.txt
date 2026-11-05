@@ -1,5 +1,20 @@
+# Document processing
 pypdf
 python-docx
+
+# Embeddings and vector database
 sentence-transformers
 chromadb
+
+# API backend
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+
+# Testing
+pytest
+httpx
+
+# Previous UI - keep temporarily during migration
 streamlit

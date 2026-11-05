@@ -67,9 +67,11 @@ class VectorStore:
 
             metadata = {
                 "source": chunk.source,
-                "file_type": chunk.file_type,
+                "filename": chunk.source.split(":", 1)[-1],
+                "document_id": chunk.source.split(":", 1)[0],
+                 "file_type": chunk.file_type,
                 "chunk_index": chunk.chunk_index,
-            }
+}
 
             if chunk.page_number is not None:
                 metadata["page_number"] = chunk.page_number

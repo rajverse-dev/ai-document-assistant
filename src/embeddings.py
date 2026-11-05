@@ -19,8 +19,7 @@ class EmbeddingGenerator:
             device=device,
         )
 
-        self.dimension = self.model.get_sentence_embedding_dimension()
-
+        self.dimension = self.model.get_embedding_dimension()
         print(f"Loaded embedding model: {model_name}")
         print(f"Embedding dimension: {self.dimension}")
 

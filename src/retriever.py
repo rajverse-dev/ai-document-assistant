@@ -1,4 +1,3 @@
-
 from src.embeddings import EmbeddingGenerator
 from src.vector_store import VectorStore
 
@@ -24,26 +23,33 @@ class DocumentRetriever:
         self.top_k = top_k
         self.max_distance = max_distance
 
-    def retrieve(self, question: str) -> list[dict]:
-        """Retrieve relevant passages for a user's question."""
+    def retrieve(
+        self,
+        question: str,
+        top_k: int | None = None,
+    ) -> list[dict]:
 
         if not question or not question.strip():
             raise ValueError("Question cannot be empty")
 
-        # 1. Convert the question into an embedding.
+        selected_top_k = (
+            top_k if top_k is not None else self.top_k
+        )
+
+        if selected_top_k <= 0:
+            raise ValueError("top_k must be positive")
+
         query_embedding = (
             self.embedding_generator.generate_embeddings(
                 [question.strip()]
             )[0]
         )
 
-        # 2. Search ChromaDB.
         results = self.vector_store.search(
             query_embedding,
-            top_k=self.top_k,
+            top_k=selected_top_k,
         )
 
-        # 3. Apply the optional distance threshold.
         if self.max_distance is not None:
             results = [
                 result
@@ -51,7 +57,6 @@ class DocumentRetriever:
                 if result["distance"] <= self.max_distance
             ]
 
-        # 4. Add a similarity score for easier interpretation.
         for result in results:
             result["similarity"] = 1.0 - result["distance"]
 
